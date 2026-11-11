@@ -1,0 +1,103 @@
+{
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
+  "name": "webcrawl",
+  "version": "1.0.2",
+  "description": "Search the web, read pages and documents as Markdown with source links, map and crawl sites, and watch pages for changes.",
+  "author": {
+    "name": "Brainfish",
+    "email": "support@brainfi.sh",
+    "url": "https://webcrawl.app"
+  },
+  "homepage": "https://webcrawl.app",
+  "repository": "https://github.com/brainfish-ai/webcrawl-anything",
+  "license": "MIT",
+  "keywords": ["web search", "scrape", "crawl", "markdown", "pdf", "research", "monitor", "cve"],
+  "extensions": {
+    "com.openai": {
+      "interface": {
+        "displayName": "Webcrawl",
+        "shortDescription": "Search, read and watch the web",
+        "longDescription": "Webcrawl searches the web and structured sources (news, shopping, travel, local business, academic papers and CVEs), reads any public page, PDF, Office file or YouTube video as clean Markdown, maps and crawls a site, extracts structured fields, and watches pages on a schedule with email or webhook alerts. Every result includes its source URL so answers can be checked. Monitors belong to your connected webcrawl.app account.",
+        "developerName": "Brainfish",
+        "category": "Developer Tools",
+        "capabilities": ["Search the web", "Read pages and documents", "Map and crawl sites", "Extract structured data", "Monitor pages for changes"],
+        "websiteURL": "https://webcrawl.app",
+        "supportURL": "https://webcrawl.app/support",
+        "privacyPolicyURL": "https://webcrawl.app/privacy",
+        "termsOfServiceURL": "https://webcrawl.app/terms",
+        "defaultPrompt": [
+          "Read https://modelcontextprotocol.io/specification and summarize what changed in the latest version, with links.",
+          "Find recent critical CVEs for OpenSSL and list the fixed versions.",
+          "Watch https://www.apple.com/shop/buy-mac/macbook-air and email me when the price changes."
+        ],
+        "brandColor": "#8B6CFF",
+        "brandColorDark": "#C9B8FF",
+        "composerIcon": "./assets/icon.png",
+        "composerIconDark": "./assets/icon-dark.png",
+        "logo": "./assets/logo.png",
+        "logoDark": "./assets/logo-dark.png",
+        "screenshots": []
+      },
+      "onboardingSkill": "./skills/get-started/SKILL.md",
+      "review": {
+        "test_cases": {
+          "positive": [
+            {
+              "description": "Read a public page as Markdown",
+              "prompt": "Read https://en.wikipedia.org/wiki/Web_crawler and give me the three main uses of crawlers, citing the page.",
+              "tools_triggered": "web_read",
+              "expected_behavior": "Returns a short summary grounded in the page content, with the source URL."
+            },
+            {
+              "description": "Web search with sources",
+              "prompt": "Search the web for the latest stable Node.js LTS release and tell me its version and release date.",
+              "tools_triggered": "web_search",
+              "expected_behavior": "Returns the version and date with links to the result pages it used."
+            },
+            {
+              "description": "Map a site's pages",
+              "prompt": "List the documentation pages on https://modelcontextprotocol.io.",
+              "tools_triggered": "web_map",
+              "expected_behavior": "Returns a list of URLs found via the sitemap and links on the site."
+            },
+            {
+              "description": "Read a PDF",
+              "prompt": "Read https://arxiv.org/pdf/1706.03762 and summarize the abstract.",
+              "tools_triggered": "web_parse",
+              "expected_behavior": "Returns the paper text as Markdown and a summary of the abstract with the source URL."
+            },
+            {
+              "description": "Create and list a monitor in the demo account",
+              "prompt": "Watch https://news.ycombinator.com every 6 hours and tell me when a post about MCP reaches the front page. Then list my monitors.",
+              "tools_triggered": "web_monitor",
+              "expected_behavior": "Creates a monitor in the connected account with a 360 minute interval and a watch_for focus, then lists monitors including the new one and the seeded sample monitors."
+            }
+          ],
+          "negative": [
+            {
+              "description": "Purchases are not supported",
+              "prompt": "Buy the cheapest MacBook Air on apple.com for me.",
+              "expected_behavior": "Does not place an order. Explains that Webcrawl only reads public pages and can look up current prices or watch the product page instead."
+            },
+            {
+              "description": "Private pages behind a login are not accessed",
+              "prompt": "Read my Gmail inbox and summarize unread emails.",
+              "expected_behavior": "Does not call a tool. Explains that Webcrawl reads public pages only and cannot sign in to private accounts."
+            },
+            {
+              "description": "Unrelated request",
+              "prompt": "Write me a poem about autumn.",
+              "expected_behavior": "Answers without calling any Webcrawl tool, because no web lookup is needed."
+            }
+          ]
+        },
+        "commerce": false,
+        "commerce_description": "This plugin does not sell products or process payments."
+      },
+      "publication": {
+        "countries": ["US", "GB", "CA", "AU", "NZ", "IE", "DE", "FR", "NL", "SG", "IN", "JP"],
+        "release_notes": "Initial release: web search, page and document reading, site map and crawl, structured extraction, and page monitors."
+      }
+    }
+  }
+}

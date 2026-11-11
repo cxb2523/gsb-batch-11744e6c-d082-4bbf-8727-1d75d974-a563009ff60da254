@@ -1,0 +1,24 @@
+# Categories for GitHub's auto-generated release notes ("Generate release notes" / gh release create --generate-notes).
+# Every merged PR is listed with its author, which is how contributors get credited.
+changelog:
+  exclude:
+    labels:
+      - duplicate
+      - invalid
+      - wontfix
+  categories:
+    - title: New targets
+      labels:
+        - target-plugin
+    - title: Features
+      labels:
+        - enhancement
+    - title: Fixes
+      labels:
+        - bug
+    - title: Docs
+      labels:
+        - documentation
+    - title: Other changes
+      labels:
+        - "*"

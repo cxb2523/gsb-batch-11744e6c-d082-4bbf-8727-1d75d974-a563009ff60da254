@@ -1,0 +1,52 @@
+{
+  "name": "@webcrawl/curl-impersonate",
+  "version": "1.4.6",
+  "description": "Zero-dependency curl-impersonate fetch for Node.js — pinned lexiforest binary, Chrome TLS/HTTP2 fingerprint impersonation (chrome150 default), automatic per-platform download with sha256 verification",
+  "type": "module",
+  "license": "MIT",
+  "author": "Brainfish AI <support@webcrawl.app> (https://webcrawl.app)",
+  "homepage": "https://webcrawl.app",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/brainfish-ai/webcrawl-anything.git",
+    "directory": "packages/curl-impersonate"
+  },
+  "bugs": {
+    "url": "https://github.com/brainfish-ai/webcrawl-anything/issues"
+  },
+  "keywords": [
+    "curl-impersonate",
+    "tls-fingerprint",
+    "ja3",
+    "ja4",
+    "http2-fingerprint",
+    "web-scraping",
+    "anti-bot",
+    "waf-bypass",
+    "webcrawl"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "files": [
+    "dist",
+    "README.md"
+  ],
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "development": "./src/index.ts",
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    }
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.build.json",
+    "prepack": "npm run build",
+    "test": "node --conditions=development --import tsx --test test/*.test.ts"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}

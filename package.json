@@ -1,0 +1,46 @@
+{
+  "name": "webcrawl-anything",
+  "version": "1.4.6",
+  "private": true,
+  "description": "Webcrawl Anything — Open-source search, universal document parser, and crawl engine for AI agents (CLI, SDK, and MCP server)",
+  "type": "module",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/brainfish-ai/webcrawl-anything.git"
+  },
+  "homepage": "https://webcrawl.app",
+  "license": "MIT",
+  "scripts": {
+    "build": "npm run build:packages",
+    "benchmark": "tsx src/benchmark.ts",
+    "typecheck": "tsc --noEmit",
+    "test": "node --import tsx --test src/__tests__/real-estate.test.ts src/__tests__/dedupe-key.test.ts src/__tests__/hotels.test.ts src/__tests__/stealth.test.ts src/__tests__/safe-url.test.ts src/__tests__/markdown-options.test.ts src/__tests__/crawl-policy.test.ts src/__tests__/path-scope.test.ts src/__tests__/youtube.test.ts src/__tests__/cve-cache.test.ts src/__tests__/targets.test.ts src/__tests__/awswaf.test.ts src/__tests__/proxy-tier.test.ts src/__tests__/render-tier.test.ts src/__tests__/map-filter.test.ts src/__tests__/blocked-scrape.test.ts src/__tests__/extract.test.ts src/__tests__/search-fallback.test.ts src/__tests__/chrome-driver.test.ts src/__tests__/js-render-failure.test.ts src/__tests__/content-ready.test.ts src/__tests__/content-ready-edge.test.ts src/__tests__/live-smoke.test.ts && npm run test:packages",
+    "test:packages": "npm test --workspaces --if-present",
+    "build:packages": "npm run build --workspaces --if-present",
+    "package:chatgpt": "node scripts/package-chatgpt-plugin.mjs",
+    "release": "bash scripts/release.sh",
+    "release:packages": "bash scripts/release.sh none --no-push"
+  },
+  "dependencies": {
+    "@ai-sdk/gateway": "^4.0.123",
+    "@firecrawl/pdf-inspector": "^1.25.2",
+    "@modelcontextprotocol/sdk": "^1.32.2",
+    "@vercel/sandbox": "^1.0.0",
+    "@webcrawl/client": "^1.4.6",
+    "@webcrawl/curl-impersonate": "^1.4.6",
+    "@webcrawl/mcp": "^1.4.6",
+    "ai": "^7.0.150",
+    "impit": "^0.14.7",
+    "mammoth": "^1.13.0",
+    "officeparser": "^8.2.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.0.0",
+    "exceljs": "^4.4.0",
+    "tsx": "^4.19.0",
+    "typescript": "^5.7.0"
+  },
+  "workspaces": [
+    "packages/*"
+  ]
+}

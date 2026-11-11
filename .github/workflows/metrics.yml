@@ -1,0 +1,23 @@
+name: Weekly metrics
+
+# Every Monday 22:00 UTC (Tuesday 9am Sydney). Writes the table to the job summary.
+on:
+  schedule:
+    - cron: "0 22 * * 1"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  metrics:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Collect metrics
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: node scripts/metrics.mjs | tee -a "$GITHUB_STEP_SUMMARY"

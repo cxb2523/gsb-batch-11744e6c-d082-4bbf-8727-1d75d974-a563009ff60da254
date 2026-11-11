@@ -1,0 +1,208 @@
+name: Release Packages to npm
+
+on:
+  push:
+    tags:
+      - "v*.*.*"
+  workflow_dispatch:
+    inputs:
+      bump:
+        description: "Version bump (none publishes current version in package.json)"
+        required: false
+        default: "none"
+        type: choice
+        options:
+          - none
+          - patch
+          - minor
+          - major
+
+permissions:
+  contents: write
+  id-token: write
+
+jobs:
+  release:
+    name: Build, Test & Publish to npm
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node.js 22
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          registry-url: "https://registry.npmjs.org"
+          cache: "npm"
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Optional version bump (workflow_dispatch)
+        if: ${{ github.event_name == 'workflow_dispatch' && inputs.bump != 'none' }}
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          # release.sh bumps package.json files, then `npm install --package-lock-only`
+          # so the lockfile keeps @webcrawl/* as workspace links. The refreshed
+          # lockfile is part of the release commit (avoids ETARGET for versions
+          # that are not on the registry yet).
+          bash scripts/release.sh "${{ inputs.bump }}" --no-publish --no-push
+          VERSION=$(node -p "require('./packages/cli/package.json').version")
+          # Push the branch first, then the tag. `git push --follow-tags` can
+          # create the remote tag even when the protected-main update is
+          # rejected, which leaves a dangling tag and skips npm publish.
+          if ! git push origin HEAD:main; then
+            echo "::error::Push to main was rejected. main is a protected branch, so workflow_dispatch bump cannot land the release commit directly."
+            echo "Open a pull request with the version bump, merge it, then re-run this workflow with bump=none."
+            exit 1
+          fi
+          git push origin "v${VERSION}"
+
+      - name: Build workspace packages
+        run: npm run build:packages
+
+      - name: Run workspace tests
+        run: npm run test:packages
+
+      - name: Publish @webcrawl/client, @webcrawl/mcp, @webcrawl/curl-impersonate, and webcrawl to npm
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+        run: |
+          VERSION=$(node -p "require('./packages/cli/package.json').version")
+          echo "Publishing version ${VERSION} to npm..."
+
+          is_on_registry() {
+            local pkg_name="$1"
+            local encoded="${pkg_name/\//%2f}"
+            local has_ver
+            has_ver=$(curl -fsSL -H 'Cache-Control: no-cache' "https://registry.npmjs.org/${encoded}?t=$(date +%s)$RANDOM" 2>/dev/null | node -e '
+              try {
+                const d = JSON.parse(require("fs").readFileSync(0, "utf8"));
+                const v = process.argv[1];
+                if (d.versions && d.versions[v]) process.stdout.write("yes");
+              } catch {}
+            ' "$VERSION")
+            [ "$has_ver" = "yes" ]
+          }
+
+          publish_if_needed() {
+            local pkg_name="$1"
+            local workspace_path="$2"
+            if is_on_registry "$pkg_name"; then
+              echo "✓ ${pkg_name}@${VERSION} is already published on npm, skipping."
+            else
+              echo "→ Publishing ${pkg_name}@${VERSION} (${workspace_path})..."
+              local out
+              if ! out=$(npm publish --workspace="${workspace_path}" --access public 2>&1); then
+                echo "$out"
+                # The release script publishes locally before pushing the tag, so the registry
+                # index can lag behind and reject this as a duplicate. That is not a failure.
+                if echo "$out" | grep -qE "E409|previously (staged|published)|cannot publish over"; then
+                  echo "✓ ${pkg_name}@${VERSION} was already published (registry conflict), continuing."
+                else
+                  return 1
+                fi
+              else
+                echo "$out"
+              fi
+            fi
+          }
+
+          # npm publish does not resolve dependencies, so there is no need to wait for
+          # each package to show up on the registry before publishing the next one.
+          publish_if_needed "@webcrawl/client" "packages/client"
+          publish_if_needed "@webcrawl/mcp" "packages/mcp"
+          publish_if_needed "@webcrawl/curl-impersonate" "packages/curl-impersonate"
+          publish_if_needed "webcrawl" "packages/cli"
+
+      # The registry only stores metadata. It checks that the npm package published
+      # above carries a matching "mcpName", so this has to run after the npm publish.
+      - name: Install cosign
+        uses: sigstore/cosign-installer@6f9f17788090df1f26f669e9d70d6ae9567deba6 # v4.1.2
+
+      - name: Download and verify mcp-publisher
+        env:
+          MCP_PUBLISHER_VERSION: v1.8.7
+        run: |
+          set -euo pipefail
+          archive="mcp-publisher_linux_amd64.tar.gz"
+          base_url="https://github.com/modelcontextprotocol/registry/releases/download/${MCP_PUBLISHER_VERSION}"
+          curl --fail --location --silent --show-error --output "$archive" "$base_url/$archive"
+          curl --fail --location --silent --show-error --output "$archive.sigstore.json" "$base_url/$archive.sigstore.json"
+          cosign verify-blob \
+            --bundle "$archive.sigstore.json" \
+            --certificate-identity "https://github.com/modelcontextprotocol/registry/.github/workflows/release.yml@refs/tags/${MCP_PUBLISHER_VERSION}" \
+            --certificate-oidc-issuer "https://token.actions.githubusercontent.com" \
+            "$archive"
+          tar xzf "$archive" mcp-publisher
+          rm -f "$archive" "$archive.sigstore.json"
+
+      - name: Publish to the MCP Registry
+        run: |
+          set -euo pipefail
+          VERSION=$(node -p "require('./packages/mcp/package.json').version")
+          # Pin server.json to the version that was just published to npm.
+          node -e '
+            const fs = require("fs");
+            const v = process.argv[1];
+            const s = JSON.parse(fs.readFileSync("server.json", "utf8"));
+            s.version = v;
+            for (const p of s.packages) if (p.identifier === "@webcrawl/mcp") p.version = v;
+            fs.writeFileSync("server.json", JSON.stringify(s, null, 2) + "\n");
+          ' "$VERSION"
+          ./mcp-publisher validate
+          ./mcp-publisher login github-oidc
+          # The registry checks the npm package for a matching "mcpName". npm can take a
+          # few minutes to index a fresh version, so retry here instead of blocking the
+          # npm publish step on registry visibility.
+          for attempt in $(seq 1 10); do
+            if out=$(./mcp-publisher publish 2>&1); then
+              echo "$out"
+              exit 0
+            fi
+            echo "$out"
+            if echo "$out" | grep -qiE "already exists|duplicate|cannot publish duplicate"; then
+              echo "✓ io.github.brainfish-ai/webcrawl@${VERSION} is already in the MCP Registry, continuing."
+              exit 0
+            fi
+            echo "MCP Registry publish attempt ${attempt} failed; retrying in 30s..."
+            sleep 30
+          done
+          exit 1
+
+      - name: Create GitHub Release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          VERSION=$(node -p "require('./packages/cli/package.json').version")
+          TAG="v${VERSION}"
+          HEAD_SHA=$(git rev-parse HEAD)
+          # See the remote tag even if this checkout did not already have it.
+          git fetch origin "refs/tags/${TAG}:refs/tags/${TAG}" --force || true
+          # A previous failed bump can leave this tag pointing at a commit that
+          # is not on main. Recreate it on HEAD so the GitHub Release matches
+          # the commit that was just published.
+          if git rev-parse "refs/tags/${TAG}" >/dev/null 2>&1; then
+            TAG_SHA=$(git rev-parse "${TAG}^{commit}")
+            if [ "${TAG_SHA}" != "${HEAD_SHA}" ]; then
+              echo "Tag ${TAG} points at ${TAG_SHA}, not the commit being released (${HEAD_SHA})."
+              echo "Moving ${TAG} to HEAD so the GitHub Release matches this publish."
+              git config user.name "github-actions[bot]"
+              git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+              git tag -fa "${TAG}" -m "Release ${TAG}"
+              git push origin "refs/tags/${TAG}" --force
+              if gh release view "${TAG}" >/dev/null 2>&1; then
+                echo "GitHub Release ${TAG} exists on the previous tag commit; recreating it on HEAD."
+                gh release delete "${TAG}" --yes
+              fi
+            fi
+          fi
+          if ! gh release view "$TAG" >/dev/null 2>&1; then
+            gh release create "$TAG" --generate-notes --title "$TAG"
+          fi

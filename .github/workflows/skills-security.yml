@@ -1,0 +1,74 @@
+name: Skills security
+
+# Scans the agent skills with Snyk Agent Scan, the same scanner that produces
+# the audit shown on skills.sh. Needs a SNYK_TOKEN repository secret
+# (https://app.snyk.io/account). Without it, or on fork PRs where secrets are
+# not available, the scan step is skipped and the job passes.
+
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - ".agents/skills/**"
+      - "plugins/chatgpt/skills/**"
+      - ".github/workflows/skills-security.yml"
+  push:
+    branches: [main]
+    paths:
+      - ".agents/skills/**"
+      - "plugins/chatgpt/skills/**"
+      - ".github/workflows/skills-security.yml"
+  workflow_dispatch:
+
+concurrency:
+  group: skills-security-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  agent-scan:
+    name: Snyk Agent Scan (skills)
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    env:
+      SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+      # Pinned: the CLI's output and risk names are marked experimental upstream.
+      AGENT_SCAN_VERSION: "0.6.10"
+      # Fetching third-party web pages is what these skills are for, so this
+      # risk can't be designed away. The skills carry an "Untrusted content"
+      # section instead. Every other risk fails the build.
+      IGNORED_RISKS: third_party_content_exposure
+    steps:
+      - name: Skip notice (no SNYK_TOKEN)
+        if: env.SNYK_TOKEN == ''
+        run: echo "::notice title=Skills security::SNYK_TOKEN is not set, so the Snyk Agent Scan was skipped."
+
+      - name: Checkout repository
+        if: env.SNYK_TOKEN != ''
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        if: env.SNYK_TOKEN != ''
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install Snyk Agent Scan
+        if: env.SNYK_TOKEN != ''
+        run: python -m pip install --disable-pip-version-check "snyk-agent-scan==${AGENT_SCAN_VERSION}"
+
+      # Only skill directories are passed, so no MCP config is read and no MCP
+      # server is started or contacted. --dangerously-run-mcp-servers is required
+      # by the CLI whenever --ci is used non-interactively.
+      - name: Scan skills
+        if: env.SNYK_TOKEN != ''
+        run: |
+          snyk-agent-scan scan \
+            --ci \
+            --dangerously-run-mcp-servers \
+            --ignore-risks "${IGNORED_RISKS}" \
+            --storage-file "${RUNNER_TEMP}/agent-scan" \
+            .agents/skills \
+            plugins/chatgpt/skills

@@ -1,0 +1,30 @@
+{
+  "extends": "../../tsconfig.packages.json",
+  "compilerOptions": {
+    "outDir": "dist/core",
+    "rootDir": "../../src",
+    "noEmit": false,
+    "declaration": true,
+    "module": "ESNext",
+    "moduleResolution": "Bundler",
+    "target": "ES2022",
+    "lib": ["ES2022", "DOM", "DOM.Iterable"],
+    "skipLibCheck": true
+  },
+  "include": [
+    "../../src/engine/**/*.ts",
+    "../../src/search/**/*.ts",
+    "../../src/parse/**/*.ts",
+    "../../src/extract/**/*.ts",
+    "../../src/ranker/**/*.ts",
+    "../../src/targets/**/*.ts",
+    "../../src/interact/**/*.ts",
+    "../../src/engine.ts",
+    "../../src/search.ts",
+    "../../src/ranker.ts",
+    "../../src/targets.ts",
+    "../../src/local-engine.ts",
+    "../../src/sandbox.ts",
+    "../../src/image-url.ts"
+  ]
+}

@@ -1,0 +1,52 @@
+{
+  "name": "@webcrawl/client",
+  "version": "1.4.6",
+  "description": "Zero-dependency TypeScript & Node.js SDK for Webcrawl Anything (search, scrape, parse, map, crawl, extract, rerank, targets)",
+  "type": "module",
+  "license": "MIT",
+  "author": "Brainfish AI <support@webcrawl.app> (https://webcrawl.app)",
+  "homepage": "https://webcrawl.app",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/brainfish-ai/webcrawl-anything.git",
+    "directory": "packages/client"
+  },
+  "bugs": {
+    "url": "https://github.com/brainfish-ai/webcrawl-anything/issues"
+  },
+  "keywords": [
+    "webcrawl",
+    "web-crawler",
+    "web-scraper",
+    "search-api",
+    "markdown",
+    "pdf-parser",
+    "cve",
+    "mcp",
+    "ai-agents"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "files": [
+    "dist",
+    "README.md"
+  ],
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "development": "./src/index.ts",
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    }
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.build.json",
+    "prepack": "npm run build",
+    "test": "node --conditions=development --import tsx --test test/*.test.ts"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}

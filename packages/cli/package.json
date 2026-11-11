@@ -1,0 +1,140 @@
+{
+  "name": "webcrawl",
+  "version": "1.4.6",
+  "description": "Webcrawl Anything CLI & Core Engine — crawl, search, and extract structured evidence from any website, SPA, PDF, Office file, YouTube video, GitHub repo, ArXiv paper, or CVE",
+  "type": "module",
+  "license": "MIT",
+  "author": "Brainfish AI <support@webcrawl.app> (https://webcrawl.app)",
+  "homepage": "https://webcrawl.app",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/brainfish-ai/webcrawl-anything.git",
+    "directory": "packages/cli"
+  },
+  "bugs": {
+    "url": "https://github.com/brainfish-ai/webcrawl-anything/issues"
+  },
+  "keywords": [
+    "webcrawl",
+    "web-crawler",
+    "web-scraper",
+    "search-engine",
+    "mcp",
+    "claude-code",
+    "cursor",
+    "codex",
+    "pdf-parser",
+    "youtube-transcript",
+    "cve",
+    "ai-agents"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "bin": {
+    "webcrawl": "./dist/bin.js"
+  },
+  "files": [
+    "dist",
+    "README.md"
+  ],
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "development": "./src/index.ts",
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    },
+    "./local-engine": {
+      "types": "./dist/core/local-engine.d.ts",
+      "default": "./dist/core/local-engine.js"
+    },
+    "./local-engine.js": {
+      "types": "./dist/core/local-engine.d.ts",
+      "default": "./dist/core/local-engine.js"
+    },
+    "./engine": {
+      "types": "./dist/core/engine.d.ts",
+      "default": "./dist/core/engine.js"
+    },
+    "./engine.js": {
+      "types": "./dist/core/engine.d.ts",
+      "default": "./dist/core/engine.js"
+    },
+    "./engine/*": "./dist/core/engine/*",
+    "./search": {
+      "types": "./dist/core/search.d.ts",
+      "default": "./dist/core/search.js"
+    },
+    "./search.js": {
+      "types": "./dist/core/search.d.ts",
+      "default": "./dist/core/search.js"
+    },
+    "./search/*": "./dist/core/search/*",
+    "./parse": {
+      "types": "./dist/core/parse/index.d.ts",
+      "default": "./dist/core/parse/index.js"
+    },
+    "./parse/*": "./dist/core/parse/*",
+    "./extract": {
+      "types": "./dist/core/extract/index.d.ts",
+      "default": "./dist/core/extract/index.js"
+    },
+    "./extract/*": "./dist/core/extract/*",
+    "./ranker": {
+      "types": "./dist/core/ranker.d.ts",
+      "default": "./dist/core/ranker.js"
+    },
+    "./ranker.js": {
+      "types": "./dist/core/ranker.d.ts",
+      "default": "./dist/core/ranker.js"
+    },
+    "./ranker/*": "./dist/core/ranker/*",
+    "./targets": {
+      "types": "./dist/core/targets.d.ts",
+      "default": "./dist/core/targets.js"
+    },
+    "./targets.js": {
+      "types": "./dist/core/targets.d.ts",
+      "default": "./dist/core/targets.js"
+    },
+    "./targets/*": "./dist/core/targets/*",
+    "./interact/*": "./dist/core/interact/*",
+    "./sandbox": {
+      "types": "./dist/core/sandbox.d.ts",
+      "default": "./dist/core/sandbox.js"
+    },
+    "./sandbox.js": {
+      "types": "./dist/core/sandbox.d.ts",
+      "default": "./dist/core/sandbox.js"
+    },
+    "./image-url": {
+      "types": "./dist/core/image-url.d.ts",
+      "default": "./dist/core/image-url.js"
+    },
+    "./image-url.js": {
+      "types": "./dist/core/image-url.d.ts",
+      "default": "./dist/core/image-url.js"
+    }
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.build.json && tsc -p tsconfig.core.json",
+    "prepack": "npm run build",
+    "test": "node --conditions=development --import tsx --test test/*.test.ts"
+  },
+  "dependencies": {
+    "@ai-sdk/gateway": "^4.0.123",
+    "@firecrawl/pdf-inspector": "^1.25.2",
+    "@vercel/sandbox": "^1.0.0",
+    "@webcrawl/client": "^1.4.6",
+    "@webcrawl/curl-impersonate": "^1.4.6",
+    "ai": "^7.0.150",
+    "impit": "^0.14.7",
+    "mammoth": "^1.13.0",
+    "officeparser": "^8.2.0"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}

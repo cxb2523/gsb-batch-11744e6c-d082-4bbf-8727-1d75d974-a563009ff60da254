@@ -1,0 +1,169 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 820" width="1280" height="820" role="img" aria-labelledby="title desc">
+  <title id="title">The hive: an AI analyst team that rebuilds programs from ReverseAI evidence</title>
+  <desc id="desc">A program is prepared once with Ghidra and exported as a map of functions, calls and strings. A pre-flight stops packed programs before any agent is spent. The queen, which is code and not a model, plans with one planner agent, freezes the shared contract header and schedules builder bees in parallel, one module each, each with its own ReverseAI MCP server and a folder it alone can write. Claude and Codex bees can alternate. An independent council of three non-authors per module tries to refute each module against the assembly; only evidenced differences count and go back for repair. The queen compiles and links from a clean stage, a deterministic evidence checker re-runs every cited question, and, only when allowed, the original and the rebuild run the same conformance cases. Code computes the verdict: accepted, disputed or not accepted.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#0b1220"/><stop offset="1" stop-color="#111c33"/></linearGradient>
+    <linearGradient id="card" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#1b2742"/><stop offset="1" stop-color="#16203a"/></linearGradient>
+    <linearGradient id="shield" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#14532d"/><stop offset="1" stop-color="#0f3d22"/></linearGradient>
+    <linearGradient id="queen" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#3b2a0b"/><stop offset="1" stop-color="#2a1e09"/></linearGradient>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#7dd3fc"/></marker>
+    <marker id="arrowA" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#f59e0b"/></marker>
+    <style>
+      text { font-family: -apple-system, "Segoe UI", Helvetica, Arial, sans-serif; fill: #e2e8f0; }
+      .h { font-size: 17px; font-weight: 700; fill: #f8fafc; }
+      .s { font-size: 12.5px; fill: #a5b4cc; }
+      .n { font-size: 12px; font-weight: 700; fill: #0b1220; }
+      .k { font-size: 12px; fill: #cbd5e1; }
+      .hx { font-size: 12px; font-weight: 700; fill: #0b1220; }
+      .chip { font-size: 13px; font-weight: 700; fill: #0b1220; }
+      .flow { stroke: #7dd3fc; stroke-width: 2.2; fill: none; }
+      .back { stroke: #f59e0b; stroke-width: 2; fill: none; stroke-dasharray: 6 5; }
+      .tag { font-size: 11.5px; font-style: italic; fill: #fbbf24; }
+      .box { fill: url(#card); stroke: #2c3b5e; stroke-width: 1.5; }
+    </style>
+  </defs>
+  <rect width="1280" height="820" rx="22" fill="url(#bg)"/>
+  <text x="40" y="52" style="font-size:26px;font-weight:800;fill:#f8fafc">The hive: an AI analyst team that rebuilds programs</text>
+  <text x="40" y="78" class="s" style="font-size:14px">A queen in code, parallel bees on ReverseAI evidence, an independent council, and a checker that keeps the final word.</text>
+  <g>
+    <rect class="box" x="30" y="110" width="180" height="128" rx="14"/>
+    <circle cx="52" cy="132" r="12" fill="#7dd3fc"/><text x="52" y="136" class="n" text-anchor="middle">1</text>
+    <text x="72" y="138" class="h">Program</text>
+    <text x="50" y="166" class="s">approved file</text>
+    <text x="50" y="185" class="s">analysed as data</text>
+    <text x="50" y="204" class="s">native: ELF · PE · Mach-O</text>
+  </g>
+  <g>
+    <rect class="box" x="250" y="110" width="250" height="128" rx="14"/>
+    <circle cx="272" cy="132" r="12" fill="#7dd3fc"/><text x="272" y="136" class="n" text-anchor="middle">2</text>
+    <text x="292" y="138" class="h">Survey</text>
+    <text x="270" y="166" class="s">Ghidra analyses it once,</text>
+    <text x="270" y="185" class="s">in its locked container</text>
+    <text x="270" y="204" class="s">map: functions · calls · strings</text>
+  </g>
+  <g>
+    <rect class="box" x="540" y="110" width="250" height="128" rx="14"/>
+    <circle cx="562" cy="132" r="12" fill="#f59e0b"/><text x="562" y="136" class="n" text-anchor="middle">3</text>
+    <text x="582" y="138" class="h">Pre-flight</text>
+    <text x="560" y="166" class="s">packer names · entropy</text>
+    <text x="560" y="185" class="s">loader-only imports</text>
+    <text x="560" y="204" class="s">packed? stop before spending</text>
+  </g>
+  <g>
+    <rect x="830" y="110" width="420" height="128" rx="14" fill="url(#queen)" stroke="#f59e0b" stroke-width="1.8"/>
+    <circle cx="852" cy="132" r="12" fill="#fbbf24"/><text x="852" y="136" class="n" text-anchor="middle">4</text>
+    <text x="872" y="138" class="h">Queen</text><text x="932" y="138" class="tag">Python code, not a model</text>
+    <text x="850" y="166" class="s">plans with one planner bee, freezes contract.h / .hpp</text>
+    <text x="850" y="185" class="s">C or C++ · modules of related functions · budgets</text>
+    <text x="850" y="204" class="s">compiles, links, runs the checks, computes the verdict</text>
+    <text x="850" y="223" class="s" style="fill:#fcd34d">never writes code, never votes, cannot overrule a check</text>
+  </g>
+  <line x1="210" y1="174" x2="246" y2="174" class="flow" marker-end="url(#arrow)"/>
+  <line x1="500" y1="174" x2="536" y2="174" class="flow" marker-end="url(#arrow)"/>
+  <line x1="790" y1="174" x2="826" y2="174" class="flow" marker-end="url(#arrow)"/>
+  <g>
+    <rect class="box" x="30" y="280" width="760" height="250" rx="14"/>
+    <circle cx="52" cy="302" r="12" fill="#fbbf24"/><text x="52" y="306" class="n" text-anchor="middle">5</text>
+    <text x="72" y="308" class="h">Builder bees, in parallel</text>
+    <text x="72" y="330" class="s">one module each · own ReverseAI MCP server · writes only in its folder · cites finding IDs</text>
+    <polygon points="126.0,375.0 126.0,405.0 100.0,420.0 74.0,405.0 74.0,375.0 100.0,360.0" fill="#fbbf24" stroke="#f59e0b" stroke-width="2" opacity="0.95"/>
+    <text x="100.0" y="394.0" class="hx" text-anchor="middle">m01</text>
+    <polygon points="183.9,375.0 183.9,405.0 158.0,420.0 132.0,405.0 132.0,375.0 158.0,360.0" fill="#c4b5fd" stroke="#a78bfa" stroke-width="2" opacity="0.95"/>
+    <text x="158.0" y="394.0" class="hx" text-anchor="middle">m02</text>
+    <polygon points="241.9,375.0 241.9,405.0 215.9,420.0 189.9,405.0 189.9,375.0 215.9,360.0" fill="#fbbf24" stroke="#f59e0b" stroke-width="2" opacity="0.95"/>
+    <text x="215.9" y="394.0" class="hx" text-anchor="middle">m03</text>
+    <polygon points="299.9,375.0 299.9,405.0 273.9,420.0 247.9,405.0 247.9,375.0 273.9,360.0" fill="#c4b5fd" stroke="#a78bfa" stroke-width="2" opacity="0.95"/>
+    <text x="273.9" y="394.0" class="hx" text-anchor="middle">m04</text>
+    <polygon points="357.8,375.0 357.8,405.0 331.8,420.0 305.9,405.0 305.9,375.0 331.8,360.0" fill="#fbbf24" stroke="#f59e0b" stroke-width="2" opacity="0.95"/>
+    <text x="331.8" y="394.0" class="hx" text-anchor="middle">m05</text>
+    <polygon points="415.8,375.0 415.8,405.0 389.8,420.0 363.8,405.0 363.8,375.0 389.8,360.0" fill="#c4b5fd" stroke="#a78bfa" stroke-width="2" opacity="0.95"/>
+    <text x="389.8" y="394.0" class="hx" text-anchor="middle">m06</text>
+    <polygon points="473.7,375.0 473.7,405.0 447.8,420.0 421.8,405.0 421.8,375.0 447.8,360.0" fill="#fbbf24" stroke="#f59e0b" stroke-width="2" opacity="0.95"/>
+    <text x="447.8" y="394.0" class="hx" text-anchor="middle">m07</text>
+    <polygon points="531.7,375.0 531.7,405.0 505.7,420.0 479.7,405.0 479.7,375.0 505.7,360.0" fill="#c4b5fd" stroke="#a78bfa" stroke-width="2" opacity="0.95"/>
+    <text x="505.7" y="394.0" class="hx" text-anchor="middle">m08</text>
+    <polygon points="155.0,426.0 155.0,456.0 129.0,471.0 103.0,456.0 103.0,426.0 129.0,411.0" fill="#fbbf24" stroke="#f59e0b" stroke-width="2" opacity="0.95"/>
+    <text x="129.0" y="445.0" class="hx" text-anchor="middle">m09</text>
+    <polygon points="212.9,426.0 212.9,456.0 186.9,471.0 161.0,456.0 161.0,426.0 186.9,411.0" fill="#c4b5fd" stroke="#a78bfa" stroke-width="2" opacity="0.95"/>
+    <text x="186.9" y="445.0" class="hx" text-anchor="middle">m10</text>
+    <polygon points="270.9,426.0 270.9,456.0 244.9,471.0 218.9,456.0 218.9,426.0 244.9,411.0" fill="#fbbf24" stroke="#f59e0b" stroke-width="2" opacity="0.95"/>
+    <text x="244.9" y="445.0" class="hx" text-anchor="middle">m11</text>
+    <polygon points="328.8,426.0 328.8,456.0 302.9,471.0 276.9,456.0 276.9,426.0 302.9,411.0" fill="#c4b5fd" stroke="#a78bfa" stroke-width="2" opacity="0.95"/>
+    <text x="302.9" y="445.0" class="hx" text-anchor="middle">m12</text>
+    <polygon points="386.8,426.0 386.8,456.0 360.8,471.0 334.8,456.0 334.8,426.0 360.8,411.0" fill="#fbbf24" stroke="#f59e0b" stroke-width="2" opacity="0.95"/>
+    <text x="360.8" y="445.0" class="hx" text-anchor="middle">m13</text>
+    <polygon points="444.8,426.0 444.8,456.0 418.8,471.0 392.8,456.0 392.8,426.0 418.8,411.0" fill="#c4b5fd" stroke="#a78bfa" stroke-width="2" opacity="0.95"/>
+    <text x="418.8" y="445.0" class="hx" text-anchor="middle">m14</text>
+    <polygon points="502.7,426.0 502.7,456.0 476.7,471.0 450.8,456.0 450.8,426.0 476.7,411.0" fill="#fbbf24" stroke="#f59e0b" stroke-width="2" opacity="0.95"/>
+    <text x="476.7" y="445.0" class="hx" text-anchor="middle">m15</text>
+    <polygon points="560.7,426.0 560.7,456.0 534.7,471.0 508.7,456.0 508.7,426.0 534.7,411.0" fill="#c4b5fd" stroke="#a78bfa" stroke-width="2" opacity="0.95"/>
+    <text x="534.7" y="445.0" class="hx" text-anchor="middle">m16</text>
+    <rect x="60" y="490" width="14" height="14" rx="3" fill="#fbbf24"/><text x="82" y="502" class="k">Claude bee: no shell, no web, files fenced to its folder</text>
+    <rect x="440" y="490" width="14" height="14" rx="3" fill="#c4b5fd"/><text x="462" y="502" class="k">Codex bee (optional, mixed councils)</text>
+  </g>
+  <path d="M 1040 238 L 1040 258 L 410 258 L 410 276" class="flow" marker-end="url(#arrow)"/>
+  <text x="430" y="252" class="s" style="font-size:11px;fill:#93c5fd">frozen contract + one brief per module</text>
+  <g>
+    <rect class="box" x="830" y="280" width="420" height="250" rx="14"/>
+    <circle cx="852" cy="302" r="12" fill="#7dd3fc"/><text x="852" y="306" class="n" text-anchor="middle">6</text>
+    <text x="872" y="308" class="h">Independent council</text>
+    <circle cx="920" cy="365" r="26" fill="#0e1a30" stroke="#7dd3fc" stroke-width="2"/>
+    <circle cx="920" cy="357" r="8" fill="#7dd3fc"/><path d="M 906 380 Q 920 364 934 380" fill="#7dd3fc"/>
+    <text x="920" y="410" class="k" text-anchor="middle">control</text>
+    <circle cx="1040" cy="365" r="26" fill="#0e1a30" stroke="#7dd3fc" stroke-width="2"/>
+    <circle cx="1040" cy="357" r="8" fill="#7dd3fc"/><path d="M 1026 380 Q 1040 364 1054 380" fill="#7dd3fc"/>
+    <text x="1040" y="410" class="k" text-anchor="middle">I/O</text>
+    <circle cx="1160" cy="365" r="26" fill="#0e1a30" stroke="#7dd3fc" stroke-width="2"/>
+    <circle cx="1160" cy="357" r="8" fill="#7dd3fc"/><path d="M 1146 380 Q 1160 364 1174 380" fill="#7dd3fc"/>
+    <text x="1160" y="410" class="k" text-anchor="middle">data</text>
+    <text x="850" y="440" class="s">3 non-authors per module, fresh context</text>
+    <text x="850" y="459" class="s">anonymous copy, never the builder's notes</text>
+    <text x="850" y="478" class="s">assembly is the ground truth, evidence or it doesn't count</text>
+    <text x="850" y="497" class="s">every seat must answer, or no acceptance</text>
+  </g>
+  <line x1="790" y1="380" x2="826" y2="380" class="flow" marker-end="url(#arrow)"/>
+  <path d="M 830 500 C 812 500 812 470 794 470" class="back" marker-end="url(#arrowA)"/>
+  <text x="800" y="522" class="tag" style="font-size:10.5px">repair</text>
+  <g>
+    <rect class="box" x="30" y="570" width="280" height="128" rx="14"/>
+    <circle cx="52" cy="592" r="12" fill="#7dd3fc"/><text x="52" y="596" class="n" text-anchor="middle">7</text>
+    <text x="72" y="598" class="h">Compile and link</text>
+    <text x="50" y="626" class="s">closed compiler file system</text>
+    <text x="50" y="645" class="s">no inline asm, #embed, dlopen</text>
+    <text x="50" y="664" class="s">changed code goes back to council</text>
+  </g>
+  <g>
+    <rect x="350" y="570" width="290" height="128" rx="14" fill="url(#shield)" stroke="#22c55e" stroke-width="1.8"/>
+    <circle cx="372" cy="592" r="12" fill="#22c55e"/><text x="372" y="596" class="n" text-anchor="middle">8</text>
+    <text x="392" y="598" class="h">Evidence checker</text>
+    <text x="370" y="626" class="s" style="fill:#bbf7d0">re-runs every cited question</text>
+    <text x="370" y="645" class="s" style="fill:#bbf7d0">IDs bound to the file's hash</text>
+    <text x="370" y="664" class="s" style="fill:#bbf7d0">a failed check is never overruled</text>
+  </g>
+  <g>
+    <rect class="box" x="680" y="570" width="260" height="128" rx="14"/>
+    <circle cx="702" cy="592" r="12" fill="#7dd3fc"/><text x="702" y="596" class="n" text-anchor="middle">9</text>
+    <text x="722" y="598" class="h">Conformance</text>
+    <text x="700" y="626" class="s">original vs rebuild, same cases</text>
+    <text x="700" y="645" class="s">stdout · stderr · exit code · files</text>
+    <text x="700" y="664" class="s" style="font-size:11px;fill:#93c5fd">only with --run-original</text>
+  </g>
+  <g>
+    <rect class="box" x="980" y="570" width="270" height="128" rx="14"/>
+    <circle cx="1002" cy="592" r="12" fill="#7dd3fc"/><text x="1002" y="596" class="n" text-anchor="middle">10</text>
+    <text x="1022" y="598" class="h">Verdict, by code</text>
+    <rect x="1000" y="614" width="110" height="28" rx="14" fill="#22c55e"/>
+    <text x="1055.0" y="633" class="chip" text-anchor="middle">accepted</text>
+    <rect x="1122" y="614" width="110" height="28" rx="14" fill="#f59e0b"/>
+    <text x="1177.0" y="633" class="chip" text-anchor="middle">disputed</text>
+    <rect x="1000" y="652" width="232" height="28" rx="14" fill="#f87171"/>
+    <text x="1116.0" y="671" class="chip" text-anchor="middle">not accepted</text>
+  </g>
+  <path d="M 1040 530 L 1040 550 L 170 550 L 170 566" class="flow" marker-end="url(#arrow)"/>
+  <line x1="310" y1="634" x2="346" y2="634" class="flow" marker-end="url(#arrow)"/>
+  <line x1="640" y1="634" x2="676" y2="634" class="flow" marker-end="url(#arrow)"/>
+  <line x1="940" y1="634" x2="976" y2="634" class="flow" marker-end="url(#arrow)"/>
+  <rect x="30" y="722" width="1220" height="76" rx="14" fill="#0e1a30" stroke="#2c3b5e"/>
+  <text x="52" y="750" class="k" style="font-weight:700;fill:#86efac">Measured on wordtally (stripped, never published): 2/2 modules accepted · 16/16 claims confirmed · 43/43 and 92/92 cases identical · 25 min</text>
+  <text x="52" y="778" class="k" style="font-weight:700;fill:#7dd3fc">Measured on lz4 1.10 (254 KB): 282 functions, 30/30 modules · 448/448 claims · 68/68 and 127/127 cases identical · 4 h 34 min (earlier queen: see README note)</text>
+</svg>

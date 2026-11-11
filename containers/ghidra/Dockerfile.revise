@@ -1,0 +1,9 @@
+# Offline revision: only the approved local r6 image and the closed r7 source bundle.
+FROM sha256:ac77fda75da8580e0479087580f83b6e5495fb16df97b9696a2bdf3ae100f452
+COPY worker.py /opt/reverseai/worker.py
+COPY project_cache.py /opt/reverseai/project_cache.py
+COPY ghidra_scripts/ReverseAIOptions.java /opt/reverseai/ghidra_scripts/ReverseAIOptions.java
+COPY ghidra_scripts/ReverseAIQuery.java /opt/reverseai/ghidra_scripts/ReverseAIQuery.java
+COPY ghidra_scripts/ReverseAIPrepare.java /opt/reverseai/ghidra_scripts/ReverseAIPrepare.java
+USER 65534:65534
+ENTRYPOINT ["python3", "-I", "-B", "/opt/reverseai/worker.py"]

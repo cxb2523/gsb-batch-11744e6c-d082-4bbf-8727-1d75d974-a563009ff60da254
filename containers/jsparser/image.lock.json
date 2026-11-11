@@ -1,0 +1,13 @@
+{
+  "adapter_version": "8.0.4-r2",
+  "babel_parser_integrity": "sha512-srpptsAkEbbNIC/q8nT7o+m6CQe8CJUTV/t7MYc9NnWlgYVtHOb7JH6SorxMhN0kuRJjVqXbKClG6xSbPtzz+g==",
+  "babel_types_integrity": "sha512-eY+Yn3dCqTGmyiq2QRU66lA5FL8lqqqvecHt0fF3uHONIa7ToYsaCiWV8lOKqAs0Rb2SjixiKFROngnulPtt2g==",
+  "base_digest": "sha256:16bf2b5c59a08523519d3c8589deca849285dee1d62a3653e124c3dba340f15e",
+  "driver_sha256": "1eff3e2258b8940a49389f88136f82f6b96960caf90b6337ed2477735ffcc20f",
+  "helper_string_parser_integrity": "sha512-+6HYEBnsDRZHJtUTAEfMQd0zMDqdFHS7C+5vAsEZqBUr3vEMWOWlHJ0Jz1gS8jJIlCvLsuA6ivmeoqzH936YcA==",
+  "helper_validator_identifier_integrity": "sha512-HYx0YmuchRxRSpnjvcNffnPS8DCauKNmnumIuHG3jnQAVewRA7kfJGwF13ayEpSZs7s4R/oBH4eppuXcAQd5JQ==",
+  "image_id": "sha256:fce3f141bcd186419c12dffff4754fb685620b16f4461c08045584becdfe156f",
+  "node_sha256": "dbabf7a1cbf947e6059ffad2c27b80041db97dea1e553b62afdee7f13fca336e",
+  "platform": "linux/arm64",
+  "worker_sha256": "22c79e51dd91c80d961971a525a20f6410c3013dec99f5ab519577caf23ce6c4"
+}

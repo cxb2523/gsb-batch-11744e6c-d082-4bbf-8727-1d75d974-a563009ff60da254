@@ -1,0 +1,48 @@
+# Manual host proof: started by hand from the Actions tab, never by a push.
+# Each job checks out the repository read-only and runs only tools/host_proof.py; no secret, cache or upload.
+name: manual-proof
+
+on:
+  workflow_dispatch:
+    inputs:
+      target:
+        description: Hosts to prove
+        required: true
+        default: linux
+        type: choice
+        options:
+          - linux
+          - windows
+          - both
+
+permissions:
+  contents: read
+
+jobs:
+  linux:
+    if: inputs.target == 'linux' || inputs.target == 'both'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0 # v7.1.0
+        with:
+          python-version: "3.12"
+      - name: Host proof
+        run: python -B tools/host_proof.py --receipt "${{ runner.temp }}/receipt.json"
+
+  windows:
+    if: inputs.target == 'windows' || inputs.target == 'both'
+    runs-on: windows-2025
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0 # v7.1.0
+        with:
+          python-version: "3.12"
+      - name: Host proof
+        run: python -B tools/host_proof.py --receipt "${{ runner.temp }}/receipt.json"

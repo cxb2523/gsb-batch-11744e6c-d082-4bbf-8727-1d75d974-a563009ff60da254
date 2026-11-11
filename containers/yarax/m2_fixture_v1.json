@@ -1,0 +1,65 @@
+{
+ "rules": [
+  {
+   "category": "packer",
+   "id": "upx_packed",
+   "patterns": [
+    {
+     "hex": "55505821",
+     "id": "$a"
+    },
+    {
+     "hex": "55505830",
+     "id": "$b"
+    },
+    {
+     "hex": "55505831",
+     "id": "$c"
+    }
+   ]
+  },
+  {
+   "category": "execution",
+   "id": "powershell_encoded_command",
+   "patterns": [
+    {
+     "hex": "2d456e636f646564436f6d6d616e64",
+     "id": "$a"
+    },
+    {
+     "hex": "2d0045006e0063006f0064006500640043006f006d006d0061006e006400",
+     "id": "$w"
+    }
+   ]
+  },
+  {
+   "category": "obfuscation",
+   "id": "base64_decode_api",
+   "patterns": [
+    {
+     "hex": "46726f6d426173653634537472696e67",
+     "id": "$a"
+    },
+    {
+     "hex": "460072006f006d0042006100730065003600340053007400720069006e006700",
+     "id": "$w"
+    }
+   ]
+  },
+  {
+   "category": "credential_access",
+   "id": "credential_dump_marker",
+   "patterns": [
+    {
+     "hex": "73656b75726c73613a3a",
+     "id": "$a"
+    },
+    {
+     "hex": "730065006b00750072006c00730061003a003a00",
+     "id": "$w"
+    }
+   ]
+  }
+ ],
+ "ruleset": "m2_fixture_v1"
+}

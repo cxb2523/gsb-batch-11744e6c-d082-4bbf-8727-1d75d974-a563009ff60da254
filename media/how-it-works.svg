@@ -1,0 +1,182 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 760" width="1280" height="760" role="img" aria-labelledby="title desc">
+  <title id="title">How ReverseAI works</title>
+  <desc id="desc">ReverseAI is MIT-licensed, with offline wheel and editable installs. Windows reports require CPython 3.12.4 or later and a new output directory. Only the owner starts manual host CI; a host receipt is separate from the native proof of the Linux ARM64 worker images. Setup is separate from analysis: install the package, inspect the environment with read-only doctor, and run the native proof for the actual platform and image. Doctor does not prove containment. An approved file is frozen and hashed. The gateway serves whole-file analysis or a targeted query through allowlisted operations within budgets: host parsers for native structure, imports, strings, APK, DEX and JavaScript, and pinned LIEF, YARA-X, Ghidra, JADX and a JavaScript parser (Node.js 24 with @babel/parser 8) in a locked container per run. JavaScript ZIPs, ASAR archives and npm tarballs are read as data on the host. Whole gzip streams and tar headers are checked within fixed limits, and members are bound to their ranges in the original bytes; no files are extracted and no install script runs. JavaScript files, package declarations and lexical hints are read without executing the JavaScript; the parser reads its syntax as data and returns only offsets of module sources and calls. The host re-derives every LIEF and YARA-X value and every Ghidra anchor and re-reads referenced string contents; JADX's Java is bound to a method the host DEX decoder verifies, whose code offset and instruction count JADX must report exactly; every parser offset becomes exact bytes from which the host re-derives the literal or call name. Ghidra, JADX and parser interpretations stay derived. A Ghidra analysis can be prepared once per file, kept in a private cache bound to the file, the image and the worker code, reopened read-only inside the locked container, and exported in pages: the whole program's functions, calls, references and strings, and whole functions with complete pseudocode. Evidence binds the input hash, tool, operation and byte range, with member provenance for bytes inside a package. The reviewer independently rebuilds stored or compressed members from the package bytes and checks cited ranges and claim rules. Reports separate supported, derived, unsupported and contradicted findings. Declarations and lexical hints are not evidence of behaviour.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0b1220"/>
+      <stop offset="1" stop-color="#111c33"/>
+    </linearGradient>
+    <linearGradient id="card" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#1b2742"/>
+      <stop offset="1" stop-color="#16203a"/>
+    </linearGradient>
+    <linearGradient id="shield" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#14532d"/>
+      <stop offset="1" stop-color="#0f3d22"/>
+    </linearGradient>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="#7dd3fc"/>
+    </marker>
+    <style>
+      text { font-family: -apple-system, "Segoe UI", Helvetica, Arial, sans-serif; fill: #e2e8f0; }
+      .h { font-size: 17px; font-weight: 700; fill: #f8fafc; }
+      .s { font-size: 12.5px; fill: #a5b4cc; }
+      .n { font-size: 12px; font-weight: 700; fill: #0b1220; }
+      .k { font-size: 12px; fill: #cbd5e1; }
+      .chip { font-size: 13px; font-weight: 700; fill: #0b1220; }
+      .flow { stroke: #7dd3fc; stroke-width: 2.2; fill: none; }
+      .tag { font-size: 11.5px; font-style: italic; fill: #7dd3fc; }
+      .box { fill: url(#card); stroke: #2c3b5e; stroke-width: 1.5; }
+    </style>
+  </defs>
+
+  <rect width="1280" height="760" rx="22" fill="url(#bg)"/>
+  <text x="40" y="52" style="font-size:26px;font-weight:800;fill:#f8fafc">How ReverseAI works</text>
+  <text x="40" y="78" class="s" style="font-size:14px">Static reverse engineering with byte-anchored evidence and clearly labelled tool interpretations.</text>
+
+  <!-- Row 1 -->
+  <g>
+    <rect class="box" x="30" y="130" width="170" height="120" rx="14"/>
+    <circle cx="52" cy="152" r="12" fill="#7dd3fc"/><text x="52" y="156" class="n" text-anchor="middle">1</text>
+    <text x="115" y="188" class="h" text-anchor="middle">Approved file</text>
+    <text x="115" y="210" class="s" text-anchor="middle">never executed</text>
+  </g>
+  <g>
+    <rect class="box" x="240" y="130" width="190" height="120" rx="14"/>
+    <circle cx="262" cy="152" r="12" fill="#7dd3fc"/><text x="262" y="156" class="n" text-anchor="middle">2</text>
+    <text x="335" y="183" class="h" text-anchor="middle">Frozen snapshot</text>
+    <text x="335" y="205" class="s" text-anchor="middle">SHA-256 and size</text>
+    <text x="335" y="223" class="s" text-anchor="middle">read-only copy</text>
+    <text x="335" y="241" class="s" text-anchor="middle" style="font-size:11px;fill:#93c5fd">Ghidra analysis kept per file</text>
+  </g>
+  <g>
+    <rect class="box" x="470" y="130" width="190" height="120" rx="14"/>
+    <circle cx="492" cy="152" r="12" fill="#7dd3fc"/><text x="492" y="156" class="n" text-anchor="middle">3</text>
+    <rect x="510" y="141" width="66" height="22" rx="7" fill="#233655" stroke="#3b5b80"/>
+    <text x="543" y="156" class="k" text-anchor="middle" style="font-size:11px;fill:#bae6fd">analyze</text>
+    <rect x="584" y="141" width="58" height="22" rx="7" fill="#233655" stroke="#3b5b80"/>
+    <text x="613" y="156" class="k" text-anchor="middle" style="font-size:11px;fill:#bae6fd">query</text>
+    <text x="565" y="183" class="h" text-anchor="middle">Gateway</text>
+    <text x="565" y="205" class="s" text-anchor="middle">allowlisted operations</text>
+    <text x="565" y="223" class="s" text-anchor="middle">time and output budgets</text>
+  </g>
+
+  <!-- Setup is separate from the sample-analysis flow. -->
+  <g>
+    <rect x="1060" y="86" width="190" height="76" rx="12" fill="#0e1a30" stroke="#3b5b80" stroke-width="1.5"/>
+    <text x="1155" y="108" class="h" text-anchor="middle" style="font-size:14px">Install &amp; check</text>
+    <text x="1155" y="130" class="k" text-anchor="middle">wheel / editable · doctor</text>
+    <text x="1155" y="150" class="s" text-anchor="middle" style="font-size:11.5px">native proof per platform</text>
+  </g>
+
+  <!-- Tools column -->
+  <g>
+    <rect class="box" x="700" y="86" width="320" height="76" rx="12"/>
+    <text x="860" y="110" class="h" text-anchor="middle" style="font-size:15px">In-process parsers</text>
+    <text x="860" y="130" class="s" text-anchor="middle">native · APK · DEX · JavaScript</text>
+    <text x="860" y="150" class="s" text-anchor="middle" style="fill:#bae6fd;font-size:11.5px">ZIP · ASAR · npm .tgz</text>
+  </g>
+  <g>
+    <rect x="700" y="170" width="320" height="194" rx="16" fill="#0e1a30" stroke="#f59e0b" stroke-width="2" stroke-dasharray="7 5"/>
+    <circle cx="722" cy="192" r="12" fill="#f59e0b"/><text x="722" y="196" class="n" text-anchor="middle">4</text>
+    <text x="745" y="197" class="h" style="font-size:15px">Locked container, one per run</text>
+    <rect x="720" y="212" width="60" height="28" rx="14" fill="#86efac"/><text x="750" y="231" class="chip" text-anchor="middle">LIEF</text>
+    <rect x="787" y="212" width="76" height="28" rx="14" fill="#86efac"/><text x="825" y="231" class="chip" text-anchor="middle">YARA-X</text>
+    <rect x="870" y="212" width="68" height="28" rx="14" fill="#86efac"/><text x="904" y="231" class="chip" text-anchor="middle">Ghidra</text>
+    <rect x="945" y="212" width="58" height="28" rx="14" fill="#86efac"/><text x="974" y="231" class="chip" text-anchor="middle">JADX</text>
+    <rect x="720" y="248" width="86" height="28" rx="14" fill="#86efac"/><text x="763" y="267" class="chip" text-anchor="middle">JS parser</text>
+    <text x="816" y="267" class="s" style="font-size:11.5px">Node.js 24 · @babel/parser 8</text>
+    <text x="720" y="298" class="k">no network · read-only root · non-root user</text>
+    <text x="720" y="318" class="k">capabilities dropped · CPU, memory, time limits</text>
+    <text x="720" y="338" class="k">one read-only snapshot mount · image pinned by ID</text>
+    <text x="720" y="356" class="s" style="font-size:11.5px">limits proven natively · kept analysis read-only</text>
+  </g>
+
+  <g>
+    <rect x="1060" y="170" width="190" height="194" rx="16" fill="url(#shield)" stroke="#22c55e" stroke-width="1.8"/>
+    <circle cx="1082" cy="192" r="12" fill="#22c55e"/><text x="1082" y="196" class="n" text-anchor="middle">5</text>
+    <path d="M1155 194 l22 9 v17 c0 15 -10 25 -22 30 c-12 -5 -22 -15 -22 -30 v-17 z" fill="#22c55e" opacity="0.9"/>
+    <path d="M1145 222 l7 7 l13 -14" stroke="#0b1220" stroke-width="3.2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+    <text x="1155" y="272" class="h" text-anchor="middle" style="font-size:15px">Host re-derivation</text>
+    <text x="1155" y="290" class="s" text-anchor="middle" style="fill:#bbf7d0">LIEF, YARA-X: every value</text>
+    <text x="1155" y="305" class="s" text-anchor="middle" style="fill:#bbf7d0">Ghidra: every anchor</text>
+    <text x="1155" y="320" class="s" text-anchor="middle" style="fill:#bbf7d0">JADX: via host DEX decoder</text>
+    <text x="1155" y="335" class="s" text-anchor="middle" style="fill:#bbf7d0">JS parser: every anchor</text>
+    <text x="1155" y="352" class="s" text-anchor="middle" style="fill:#bbf7d0;font-size:11px">string bytes re-read too</text>
+  </g>
+
+  <!-- Row 1 arrows -->
+  <path class="flow" d="M200 190 H236" marker-end="url(#arrow)"/>
+  <path class="flow" d="M430 190 H466" marker-end="url(#arrow)"/>
+  <path class="flow" d="M660 190 C680 190 680 124 696 124" marker-end="url(#arrow)"/>
+  <path class="flow" d="M660 190 C680 190 680 255 696 255" marker-end="url(#arrow)"/>
+  <path class="flow" d="M1020 255 H1056" marker-end="url(#arrow)" style="stroke:#f59e0b"/>
+  <text x="1038" y="246" class="tag" text-anchor="middle" style="fill:#fbbf24">untrusted</text>
+
+  <!-- Return lines to row 2 -->
+  <path class="flow" d="M1020 124 H1042 V74 H1266 V380 H1155" />
+  <path class="flow" d="M1155 364 V380 H160 V408" marker-end="url(#arrow)"/>
+
+  <!-- Row 2 -->
+  <g>
+    <rect class="box" x="30" y="412" width="260" height="150" rx="14"/>
+    <circle cx="52" cy="434" r="12" fill="#7dd3fc"/><text x="52" y="438" class="n" text-anchor="middle">6</text>
+    <text x="75" y="439" class="h">Evidence</text>
+    <text x="52" y="468" class="k">input SHA-256 · tool and version</text>
+    <text x="52" y="488" class="k">operation · exact byte range</text>
+    <text x="52" y="508" class="k">hash of the bytes at that range</text>
+    <text x="52" y="526" class="k">member or tar-stream provenance</text>
+    <text x="52" y="548" class="s" style="font-size:11.5px">gateway-created · content-bound ID</text>
+  </g>
+  <g>
+    <rect class="box" x="330" y="412" width="220" height="150" rx="14"/>
+    <circle cx="352" cy="434" r="12" fill="#7dd3fc"/><text x="352" y="438" class="n" text-anchor="middle">7</text>
+    <text x="375" y="439" class="h">Analysts</text>
+    <text x="352" y="461" class="k">structural · capability</text>
+    <text x="352" y="479" class="k">query: native · Android · JS</text>
+    <text x="352" y="498" class="k">code (Ghidra), derived, paged:</text>
+    <text x="352" y="516" class="s">program · functions · pseudocode</text>
+    <text x="352" y="534" class="s">calls · assembly · refs · strings</text>
+    <text x="352" y="552" class="s" style="font-size:11.5px">each claim cites its evidence</text>
+  </g>
+  <g>
+    <rect class="box" x="590" y="412" width="260" height="150" rx="14"/>
+    <circle cx="612" cy="434" r="12" fill="#7dd3fc"/><text x="612" y="438" class="n" text-anchor="middle">8</text>
+    <text x="635" y="439" class="h">Reviewer</text>
+    <circle cx="805" cy="452" r="15" fill="none" stroke="#7dd3fc" stroke-width="3"/>
+    <path d="M816 463 l12 12" stroke="#7dd3fc" stroke-width="4" stroke-linecap="round"/>
+    <text x="612" y="474" class="k">re-reads input or member bytes</text>
+    <text x="612" y="494" class="k">members rebuilt from original bytes</text>
+    <text x="612" y="514" class="k">claim rule must match the value</text>
+    <text x="612" y="542" class="s" style="font-size:11.5px">analyst output is untrusted</text>
+  </g>
+  <g>
+    <rect class="box" x="890" y="412" width="360" height="150" rx="14"/>
+    <circle cx="912" cy="434" r="12" fill="#7dd3fc"/><text x="912" y="438" class="n" text-anchor="middle">9</text>
+    <text x="935" y="439" class="h">Report</text>
+    <rect x="910" y="458" width="150" height="30" rx="15" fill="#22c55e"/><text x="985" y="478" class="chip" text-anchor="middle">supported</text>
+    <rect x="1080" y="458" width="150" height="30" rx="15" fill="#60a5fa"/><text x="1155" y="478" class="chip" text-anchor="middle">derived</text>
+    <rect x="910" y="498" width="150" height="30" rx="15" fill="#94a3b8"/><text x="985" y="518" class="chip" text-anchor="middle">unsupported</text>
+    <rect x="1080" y="498" width="150" height="30" rx="15" fill="#f87171"/><text x="1155" y="518" class="chip" text-anchor="middle">contradicted</text>
+    <text x="910" y="548" class="s" style="font-size:11.5px">JSON and Markdown, tool versions and images named</text>
+  </g>
+  <path class="flow" d="M290 487 H326" marker-end="url(#arrow)"/>
+  <path class="flow" d="M550 487 H586" marker-end="url(#arrow)"/>
+  <path class="flow" d="M850 487 H886" marker-end="url(#arrow)"/>
+
+  <!-- Promises -->
+  <g>
+    <rect x="30" y="590" width="1220" height="62" rx="14" fill="#0e1a30" stroke="#2c3b5e"/>
+    <text x="60" y="616" class="k" style="font-weight:700;fill:#86efac">Every supported finding points at exact bytes.</text>
+    <text x="60" y="638" class="k" style="font-weight:700;fill:#fbbf24">A compromised tool can hide evidence, never invent verified evidence.</text>
+    <text x="640" y="616" class="k" style="font-weight:700;fill:#93c5fd">Interpretations such as decompiled code stay labelled as derived.</text>
+    <text x="640" y="638" class="k" style="font-weight:700;fill:#e2e8f0">Only verified findings can contradict each other.</text>
+  </g>
+  <g>
+    <rect x="30" y="672" width="1220" height="62" rx="14" fill="#0e1a30" stroke="#2c3b5e"/>
+    <text x="60" y="697" class="k" style="font-weight:700;fill:#86efac">MIT · wheel / editable · Python 3.12+</text>
+    <text x="60" y="720" class="k">Windows reports: CPython 3.12.4+ · new --out only</text>
+    <text x="680" y="697" class="k" style="font-weight:700;fill:#93c5fd">Manual host CI: owner-started · Linux / Windows x86-64</text>
+    <text x="680" y="720" class="k">Host checks are separate from Linux ARM64 worker proof.</text>
+  </g>
+</svg>

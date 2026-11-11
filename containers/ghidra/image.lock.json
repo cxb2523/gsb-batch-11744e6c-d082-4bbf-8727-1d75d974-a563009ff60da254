@@ -1,0 +1,11 @@
+{
+  "adapter_version": "12.1.4-r7",
+  "base_digest": "sha256:16bf2b5c59a08523519d3c8589deca849285dee1d62a3653e124c3dba340f15e",
+  "bundle_sha256": "1e9417c276636fbd9faae63eb09e633c5c7da89d6f3eea4f9a2a59c2015807b4",
+  "cache_format": 1,
+  "ghidra_sha256": "ddac49f903da9d5bac833e5cc79395098b9c33cfd3279be5f31bd00387d2d4db",
+  "image_id": "sha256:7ef34879ba052d15fead37fe872b6b769ca3baa71b5dbe650826613e660b09e8",
+  "jdk_sha256": "23e37e026f12f3e706f18938ff611db3032d075b09d0879a25d06718c773e223",
+  "parent_image_id": "sha256:ac77fda75da8580e0479087580f83b6e5495fb16df97b9696a2bdf3ae100f452",
+  "platform": "linux/arm64"
+}

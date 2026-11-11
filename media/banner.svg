@@ -1,0 +1,62 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 400" width="1280" height="400" role="img" aria-labelledby="title desc">
+  <title id="title">ReverseAI</title>
+  <desc id="desc">ReverseAI: look inside untrusted files without running them. Open reverse-engineering tools run in locked, offline containers, and every finding points at exact bytes.</desc>
+  <defs>
+    <linearGradient id="bannerBg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#101C35"/>
+      <stop offset="1" stop-color="#070D1A"/>
+    </linearGradient>
+    <radialGradient id="bannerGlow" cx="0.2" cy="0.45" r="0.55">
+      <stop offset="0" stop-color="#38BDF8" stop-opacity="0.20"/>
+      <stop offset="1" stop-color="#38BDF8" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="hexFade" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#38BDF8" stop-opacity="0"/>
+      <stop offset="0.35" stop-color="#38BDF8" stop-opacity="0.16"/>
+      <stop offset="1" stop-color="#34D399" stop-opacity="0.10"/>
+    </linearGradient>
+    <linearGradient id="markInk" gradientUnits="userSpaceOnUse" x1="120" y1="96" x2="404" y2="420">
+      <stop offset="0" stop-color="#38BDF8"/>
+      <stop offset="0.55" stop-color="#22D3EE"/>
+      <stop offset="1" stop-color="#34D399"/>
+    </linearGradient>
+    <linearGradient id="markTile" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#16264A"/>
+      <stop offset="1" stop-color="#0B1426"/>
+    </linearGradient>
+    <linearGradient id="wordInk" gradientUnits="userSpaceOnUse" x1="684" y1="0" x2="784" y2="0">
+      <stop offset="0" stop-color="#38BDF8"/>
+      <stop offset="1" stop-color="#34D399"/>
+    </linearGradient>
+  </defs>
+  <rect width="1280" height="400" rx="28" fill="url(#bannerBg)"/>
+  <rect width="1280" height="400" rx="28" fill="url(#bannerGlow)"/>
+  <g font-family="'JetBrains Mono', 'SF Mono', Menlo, Consolas, monospace" font-size="22" fill="url(#hexFade)" letter-spacing="1">
+    <text x="720" y="70">7F 45 4C 46 02 01 01 00  00 00 00 00 00 00 00 00</text>
+    <text x="720" y="110">03 00 B7 00 01 00 00 00  40 10 00 00 00 00 00 00</text>
+    <text x="720" y="150">64 65 78 0A 30 33 35 00  9C 3A 1E 52 7B 0D 44 E1</text>
+    <text x="720" y="190">50 4B 03 04 14 00 00 00  08 00 21 4E 5A 59 00 00</text>
+    <text x="720" y="230">4D 5A 90 00 03 00 00 00  04 00 00 00 FF FF 00 00</text>
+    <text x="720" y="270">CF FA ED FE 0C 00 00 01  00 00 00 00 02 00 00 00</text>
+    <text x="720" y="310">1F 8B 08 00 00 00 00 00  00 03 ED 9D 5B 73 DB 38</text>
+    <text x="720" y="350">7F 45 4C 46 02 01 01 00  00 00 00 00 00 00 00 00</text>
+  </g>
+  <rect x="1" y="1" width="1278" height="398" rx="27" fill="none" stroke="#38BDF8" stroke-opacity="0.28" stroke-width="2"/>
+  <g transform="translate(72 80) scale(0.47)">
+    <rect x="16" y="16" width="480" height="480" rx="112" fill="url(#markTile)"/>
+    <rect x="18" y="18" width="476" height="476" rx="110" fill="none" stroke="#38BDF8" stroke-opacity="0.4" stroke-width="4"/>
+    <g fill="none" stroke="url(#markInk)" stroke-linecap="round">
+      <path d="M152 130 V388" stroke-width="48"/>
+      <circle cx="264" cy="214" r="84" stroke-width="44"/>
+      <path d="M316.9 286.8 L386 382" stroke-width="54" stroke-linecap="butt"/>
+    </g>
+    <circle cx="386" cy="382" r="27" fill="url(#markInk)"/>
+    <path d="M228 216 L254 242 L300 190" fill="none" stroke="#F8FAFC" stroke-width="18" stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+  <g font-family="Inter, 'Segoe UI', 'Helvetica Neue', Helvetica, Arial, sans-serif">
+    <text x="344" y="178" font-size="92" font-weight="800" fill="#F8FAFC" letter-spacing="-2">Reverse<tspan fill="url(#wordInk)">AI</tspan></text>
+    <text x="348" y="232" font-size="30" font-weight="600" fill="#E2E8F0">Look inside untrusted files without running them.</text>
+    <text x="348" y="272" font-size="22" fill="#94A3B8">Open reverse-engineering tools in locked, offline containers.</text>
+    <text x="348" y="302" font-size="22" fill="#94A3B8">Every finding points at exact bytes, checked twice.</text>
+  </g>
+</svg>

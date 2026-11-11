@@ -1,0 +1,2 @@
+# LIEF 1.0.0 open-source core: the cp312 abi3 manylinux_2_28 aarch64 wheel, SHA-256 as published in PyPI metadata.
+lief==1.0.0 --hash=sha256:a9e4b9e165bde0163624e159c8c7a096e3d6f671371c70d008baac7ac1f04f0d

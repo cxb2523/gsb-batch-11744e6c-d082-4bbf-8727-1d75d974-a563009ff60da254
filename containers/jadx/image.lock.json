@@ -1,0 +1,11 @@
+{
+  "adapter_version": "1.5.6-r1",
+  "base_digest": "sha256:16bf2b5c59a08523519d3c8589deca849285dee1d62a3653e124c3dba340f15e",
+  "driver_sha256": "4cd10662a3b172fe4d09fea677f814c596064c72815c1e49b780ee38c2a06cf8",
+  "image_id": "sha256:afb6ff34227de6764ac949a00e866813de65bae060f8c5b1d825fcaad22c8016",
+  "jadx_jar_sha256": "fe3e12c45acf75f92369685fd02d1d7a7323385dc725680a9b98a0dac0ea554b",
+  "jadx_zip_sha256": "545ea2be9c242511bc145755cf4bda2485ade42966e096f8b4d3da2a230e8974",
+  "jdk_sha256": "23e37e026f12f3e706f18938ff611db3032d075b09d0879a25d06718c773e223",
+  "platform": "linux/arm64",
+  "worker_sha256": "5aad59418b9e68af63dc611b3dfdfbcfa4c11bdb9a74a7778cce83a350e28996"
+}

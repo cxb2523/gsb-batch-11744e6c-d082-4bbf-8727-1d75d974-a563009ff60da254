@@ -1,0 +1,2 @@
+# YARA-X 1.21.0 Python bindings: the cp38 abi3 manylinux_2_28 aarch64 wheel, SHA-256 as published in PyPI metadata.
+yara-x==1.21.0 --hash=sha256:9bd9961b44b47dd747d526e61c703a2a8170426d003e789e7724bc7862de6d56
